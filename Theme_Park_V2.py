@@ -15,10 +15,10 @@ one_thirty_cm = ["Dodgems", "Power surge", "Alpine Slide"]
 kids_rides = ["Carousel","Car Wash Convoy","The Fortress of Fun"]
 
 
-def wait(mins): #function for the amount of time user has to wait
+def wait(mins): #function for the amount of time user has to wait the -1 is to make the timer go down
         for x in range(mins * 60 , 0, -1):
                 print('{}minutes(s) {}s'.format(math.floor(x / 60), x % 60))
-                time.sleep(0.001)
+                time.sleep(1) # change number to 0.001 to make it go faster
 
 
 another_one = False
@@ -46,11 +46,11 @@ while not another_one:
                 print("Welcome to our amusment park!")
                 print("Please wait in line for your turn")
                 print()
-                if random.randint(1, 10) == 1:
+                if random.randint(1, 10) == 1: #one out 10 chance to skip the line
                         print("Oh my goodness you have skipped the line!")
                 else:
                         time_to_wait = random.randint(1, 5)
-                        wait(time_to_wait)
+                        wait(time_to_wait) #amount of time to wait in line
 
                         
                 party_validation = False
@@ -83,7 +83,7 @@ while not another_one:
                         print("Invalid")
 
                      
-                party_size = party_size - kids_amount
+                party_size = party_size - kids_amount #Making sure there are not more kids than the amount in the party
 
                         
                 for index in range(party_size):
@@ -92,7 +92,7 @@ while not another_one:
 
                     while not is_valid_height:
                         try:
-                            height = int(input("How tall is adult {} in cm".format(index + 1)))
+                            height = int(input("How tall is adult {} in cm".format(index + 1))) # making it so its prints person 1, person 2, etc
                             print()
                             if height > 0:
                                 is_valid_height = True    
@@ -138,23 +138,24 @@ while not another_one:
                         print()
 
                     else:
-                        print("Sorry person {} is to short to go on any rides".format(index + 1))
+                        print("Sorry person {} is to short to go on any rides".format(index + 1))# If person is to short to go on any rides
                 if kids_amount != 0:                    
                         child_validation = False
 
                         while not child_validation:
                                 
-                                is_child_riding = input("Is your kid/s going on any rides today? (yes or no)")
+                                is_child_riding = input("Are your kid/s going on any rides today? (yes or no)").lower() 
 
-                                if is_child_riding.lower() == "yes" or is_child_riding.lower() == "y":
+                                if is_child_riding == "yes" or is_child_riding == "y":
                                         print("here are the rides your kid/s can go on")
                                         print()
-                                        for word in kids_rides:
+                                        
+                                        for word in kids_rides: #for loop for kids rides list
                                                 print(word)
                                                 print()
                                         child_validation = True
                                         
-                                elif is_child_riding.lower() == "no" or is_child_riding.lower() == "n":
+                                elif is_child_riding == "no" or is_child_riding == "n": 
                                         print("Thats fine")
                                         child_validation = True
 
@@ -167,18 +168,18 @@ while not another_one:
                 validation = False
                 
                 while not validation:
-                        again = input("Wanna go again?")
+                        again = input("Wanna go again?").lower()
 
-                        if again.lower() == "yes" or again.lower() == "y":
+                        if again == "yes" or again == "y":
                                 another_one =  False
                                 validation = True
-                        elif again.lower() == "no" or again.lower() == "n":
+                        elif again == "no" or again == "n":
                                 another_one = True
                                 validation = True
                         else:
                                 print("Invalid")
 
-        else:
+        else: # loop for if they want to enter a new party
                 another_one = True
 print("Ok bye now")
 
